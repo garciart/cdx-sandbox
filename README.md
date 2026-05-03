@@ -46,4 +46,4 @@
 >
 > - If you are using Visual Studio Code, you can add a `.vscode` directory containing a `settings.json` file with your desired settings (see <https://github.com/garciart/pensieve/blob/main/settings.json> for an example). Just remember to add the new directory and any other directories you do not want checked by autopep8 or pylint to their `.pep8` and `.pylintrc` configuration files, respectively (e.g., `exclude = .venv/*, .vscode/*`).
 >
-> - You can replace autopep8 with a style-checker of your choice (e.g., Flake8, Black, etc.). pylint actually uses PEP8, so style-checking autopep8 is redundant. I included it to demonstrate configuring and performing linting and style checking.
+> - You can replace autopep8 with a style-checker of your choice (e.g., Flake8, Black, etc.). pylint actually uses PEP8, so style-checking with autopep8 is redundant. I included it to demonstrate configuring and performing linting and style checking.
