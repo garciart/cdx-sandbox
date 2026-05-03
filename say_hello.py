@@ -24,13 +24,14 @@ def say_hello(username: None | str = None) -> str:
     :returns str: The greeting to display
     """
     # Validate inputs
-    _result = validate_input(username, None | str, allow_empty=False)
-    if _result:
-        return _result[-1]
+    try:
+        validate_input(username, None | str, allow_empty=False)
 
-    # Account for no argument
-    username = 'World' if username is None else username
-    return f"Hello, {username}!"
+        # Account for no argument
+        username = 'World' if username is None else username
+        return f"Hello, {username}!"
+    except (TypeError, ValueError) as e:
+        return f"Error: {str(e)}"
 
 
 if __name__ == '__main__':
