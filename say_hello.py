@@ -6,6 +6,11 @@ Usage:
 
 Note: Use single or double quotes for names with spaces or special characters,
       such as 'Rob G', "O'Brien", etc.
+
+Other:
+Lint:        `python -m pylint .`
+Check style: `python -m autopep8 --diff --recursive .`
+Test:        `python -B test_say_hello.py`
 """
 import argparse
 

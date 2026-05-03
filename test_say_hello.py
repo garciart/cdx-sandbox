@@ -7,6 +7,7 @@ import unittest
 # Import the functions you want to test from the target script
 from say_hello import say_hello
 
+
 class TestSayHello(unittest.TestCase):
     """Test suite for say_hello.py."""
 
@@ -25,6 +26,7 @@ class TestSayHello(unittest.TestCase):
         for ia in _invalid_args:
             _result = say_hello(username=ia)
             self.assertTrue(_result.lower().startswith('error'))
+
 
 if __name__ == '__main__':
     unittest.main()

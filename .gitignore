@@ -1,5 +1,8 @@
 # Custom files to ignore
 .scratch
+.pylintrc
+.pep8
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
