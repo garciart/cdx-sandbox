@@ -47,30 +47,24 @@ def __is_empty(obj_to_check: object) -> bool:
 
 def validate_input(obj_to_check: object,
                    expected_type: type | None,
-                   allow_empty: bool = False) -> None | tuple:
+                   allow_empty: bool = False) -> None:
     """Check if an input is the correct type and (optionally) not empty.
 
     :param any obj_to_check: The input to check.
     :param type expected_type: The expected type of the input.
-    :param bool allow_empty: Allow empty inputs, defaults to False
+    :param bool allow_empty: Allow empty inputs, defaults to False.
     :raises TypeError: If the input is the wrong type.
     :raises ValueError: If the input is empty and it should not be.
-    :return None | tuple: None if valid, else 1 and an error message.
     """
-    try:
-        # Get the name of the input, if possible.
-        _var_name = __get_var_name(obj_to_check)
+    # Get the name of the input, if possible.
+    _var_name = __get_var_name(obj_to_check)
 
-        # Check if the input is the right type
-        if not __is_expected_type(obj_to_check, expected_type):
-            raise TypeError(f"'{_var_name}' is not {expected_type}.")
+    # Check if the input is the right type
+    if not __is_expected_type(obj_to_check, expected_type):
+        raise TypeError(f"'{_var_name}' is not {expected_type}.")
 
-        # Check if the input is empty, whitespace, or contains only None values
-        if not allow_empty and __is_empty(obj_to_check):
-            raise ValueError(
-                f"'{_var_name}' cannot be empty, whitespace, or contain only None values."
-            )
-
-        return None
-    except (TypeError, ValueError) as e:
-        return 1, f"Error: {str(e)}"
+    # Check if the input is empty, whitespace, or contains only None values
+    if not allow_empty and __is_empty(obj_to_check):
+        raise ValueError(
+            f"'{_var_name}' cannot be empty, whitespace, or contain only None values."
+        )
