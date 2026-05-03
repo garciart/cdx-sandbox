@@ -13,11 +13,13 @@ class TestSayHello(unittest.TestCase):
 
     def test_say_hello_pass_no_arg(self):
         """Test default argument."""
-        say_hello()
+        result = say_hello()
+        self.assertEqual(result, 'Hello, World!')
 
     def test_say_hello_pass_arg(self):
         """Test valid argument."""
-        say_hello(username='Rob')
+        result = say_hello(username='Rob')
+        self.assertEqual(result, 'Hello, Rob!')
 
     def test_say_hello_fail_type(self):
         """Test invalid argument types."""
@@ -26,6 +28,18 @@ class TestSayHello(unittest.TestCase):
         for ia in _invalid_args:
             _result = say_hello(username=ia)
             self.assertTrue(_result.lower().startswith('error'))
+
+    def test_say_hello_fail_empty_username(self):
+        """Test empty-string username returns an error."""
+        result = say_hello(username='')
+        self.assertTrue(result.lower().startswith('error'))
+        self.assertIn('cannot be empty', result.lower())
+
+    def test_say_hello_fail_whitespace_username(self):
+        """Test whitespace-only username returns an error."""
+        result = say_hello(username='   \t')
+        self.assertTrue(result.lower().startswith('error'))
+        self.assertIn('cannot be empty', result.lower())
 
 
 if __name__ == '__main__':
