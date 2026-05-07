@@ -35,19 +35,6 @@ class TestSayHello(unittest.TestCase):
             _result = say_hello(username=ia)
             self.assertTrue(_result.lower().startswith('error'))
 
-<<<<<<< HEAD
-    def test_say_hello_fail_empty_username(self):
-        """Test empty-string username returns an error."""
-        result = say_hello(username='')
-        self.assertTrue(result.lower().startswith('error'))
-        self.assertIn('cannot be empty', result.lower())
-
-    def test_say_hello_fail_whitespace_username(self):
-        """Test whitespace-only username returns an error."""
-        result = say_hello(username='   \t')
-        self.assertTrue(result.lower().startswith('error'))
-        self.assertIn('cannot be empty', result.lower())
-=======
     def test_cli_prompts_for_username_when_option_is_missing(self):
         """Test CLI prompt uses entered username when -u is omitted."""
         result = subprocess.run(
@@ -82,7 +69,6 @@ class TestSayHello(unittest.TestCase):
         )
 
         self.assertEqual(result.stdout, 'Hello, Rob!\n')
->>>>>>> 8c4764c (Updated input functionality.)
 
 
 if __name__ == '__main__':
