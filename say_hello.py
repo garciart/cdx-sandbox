@@ -1,6 +1,7 @@
 """A simple application that accepts input and displays a greeting.
 
 Usage:
+- python -B say_hello.py
 - python -B say_hello.py -u <username>
 - python -B say_hello.py -h
 
@@ -34,7 +35,8 @@ def say_hello(username: None | str = None) -> str:
         return f"Error: {str(e)}"
 
 
-if __name__ == '__main__':
+def main() -> None:
+    """Run the command-line interface."""
     parser = argparse.ArgumentParser(
         prog='python -B say_hello.py',
         description='A simple application that accepts input and displays a greeting.'
@@ -43,4 +45,12 @@ if __name__ == '__main__':
                         help="The user to greet, defaults to 'World' if not provided.")
     args = parser.parse_args()
 
-    print(say_hello(args.username))
+    username = args.username
+    if username is None:
+        username = input('Username: ') or None
+
+    print(say_hello(username))
+
+
+if __name__ == '__main__':
+    main()

@@ -1,11 +1,17 @@
 """Simple unit tests for the say_hello.py script
 
-
 Usage: python -B test_say_hello.py
 """
+import subprocess
+import sys
 import unittest
+from pathlib import Path
+
 # Import the functions you want to test from the target script
 from say_hello import say_hello
+
+
+SCRIPT_PATH = Path(__file__).with_name('say_hello.py')
 
 
 class TestSayHello(unittest.TestCase):
@@ -29,6 +35,7 @@ class TestSayHello(unittest.TestCase):
             _result = say_hello(username=ia)
             self.assertTrue(_result.lower().startswith('error'))
 
+<<<<<<< HEAD
     def test_say_hello_fail_empty_username(self):
         """Test empty-string username returns an error."""
         result = say_hello(username='')
@@ -40,6 +47,42 @@ class TestSayHello(unittest.TestCase):
         result = say_hello(username='   \t')
         self.assertTrue(result.lower().startswith('error'))
         self.assertIn('cannot be empty', result.lower())
+=======
+    def test_cli_prompts_for_username_when_option_is_missing(self):
+        """Test CLI prompt uses entered username when -u is omitted."""
+        result = subprocess.run(
+            [sys.executable, '-B', str(SCRIPT_PATH)],
+            input='Rob\n',
+            capture_output=True,
+            check=True,
+            text=True,
+        )
+
+        self.assertEqual(result.stdout, 'Username: Hello, Rob!\n')
+
+    def test_cli_sends_none_when_prompt_is_empty(self):
+        """Test CLI sends None when -u and prompt input are blank."""
+        result = subprocess.run(
+            [sys.executable, '-B', str(SCRIPT_PATH)],
+            input='\n',
+            capture_output=True,
+            check=True,
+            text=True,
+        )
+
+        self.assertEqual(result.stdout, 'Username: Hello, World!\n')
+
+    def test_cli_does_not_prompt_when_username_option_is_provided(self):
+        """Test CLI skips prompt when -u is provided."""
+        result = subprocess.run(
+            [sys.executable, '-B', str(SCRIPT_PATH), '-u', 'Rob'],
+            capture_output=True,
+            check=True,
+            text=True,
+        )
+
+        self.assertEqual(result.stdout, 'Hello, Rob!\n')
+>>>>>>> 8c4764c (Updated input functionality.)
 
 
 if __name__ == '__main__':
